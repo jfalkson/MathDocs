@@ -1,0 +1,207 @@
+\documentclass[10pt]{article}  
+\usepackage{amssymb}  
+\usepackage{amsthm}
+\usepackage{amsmath}
+%\usepackage{fullpage}
+%\usepackage{graphicx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Begin user defined commands
+
+\newcommand{\map}[1]{\xrightarrow{#1}}
+\newcommand{\define}{\stackrel{\mathrm{def}}{=}}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+
+%  End user defined commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% These establish different environments for stating Theorems, Lemmas, Remarks, etc.
+
+\newtheorem{Thm}{Theorem}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{Cor}[Thm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{Def}[Thm]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{Ex}[Thm]{Example}
+
+\theoremstyle{definition}
+\newtheorem{Exercise}[Thm]{Exercise}
+
+\newenvironment{Solution}{\noindent\textbf{Solution.}}{\qed}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% End environments 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Now we're ready to start
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}  
+\title{Diffeq Test 2 Study Guide}
+\date{November 15, 2011}
+\maketitle
+
+\pagestyle{plain}   % These lines turn off the automatic page numbering
+ 
+\begin{Ex}
+Method of undetermined coefficients.
+\end{Ex}
+We find the undetermined coefficients by guessing according to the table from the 10/17 notes in class. For example consider the following differential equation:
+
+$$
+y''+4y=t^2+3\cdot e^t
+$$
+
+We solve this problem by first finding the homogenous solution. We have:
+
+$$
+r^2+4=0\implies r=-2i,2i\implies y_h=Cos{2t}+Sin{2t}
+$$
+
+Guessing $y_p$ to be $A+Bt+Ct^2$(from the $t^2$ part of $g(t)$) $+De^t$. We then modify if necessary (we don't have to in this particular example) and then we substitute in our guess into the original DE and match up the coefficients and find out what they must equal. 
+
+We get:
+$$
+2c+de^t+4a+4bt+4ct^2+4de^t=t^2+3e^t
+$$
+
+And comparing coefficients yields results such as $f=\frac{3}{5}$
+
+\begin{Ex}
+Method of Anihilation
+\end{Ex}
+This method explains the logic behind why we multiply by $t$ when modifying our guess for a solution. The process is simple. We simply follow the recipe below. 
+
+Take a nonhomogenous diffeq and find the $y_h$. Then differentiate the orginal DE until you get a homogenous DE. The solution to this equation will also be a solution to the original DE. So simply take the part that is not the homogenous solution and voila! You now have the particular solution which is the same you get by guessing and modifying! \textbf{Basically a general solution to a DE will also be a solution to the DE after you differentiate everything. (If it makes the equation equal to zero when you differentiate everything it will also equal zero).}
+
+$$
+y^{(3)}+2y'=x
+$$
+
+The above equation has a homogenous solution of $y_h=c_1+c_2\cdot Cos\sqrt{2}x+c_3\cdot Sin\sqrt{2}x$
+
+Differentiating twice and finding the homogenous equation of the new diffeq gives us $c_1+c_2\cdot x + c_3\cdot x^2+ c_4\cdot Sin\sqrt{2}x+c_5\cdot Cos\sqrt{2}x$. From this we can see that
+
+$$
+y_p=Ax+Bx^2
+$$
+
+\begin{Ex}
+Variation of parameters. 
+\end{Ex}
+Variation of parameters is a technique used to solve DEs where there are not necessarily constant coefficients and $g(t)$ does not necessarily make $y_p$ easy to guess (such as the tangent function). 
+
+The first step is to find the $y_h$. Then we note that the solution is $y_p=u_1\cdot y_1+u_2\cdot y_2$. Where 
+
+$$
+u_1=\int \dfrac{-y_2\cdot g}{W(y_1,y_2)}
+$$
+
+and
+
+$$
+u_2=\int \dfrac{y_1\cdot g}{W(y_1,y_2)}
+$$
+
+Integrate to find $u_1$ and $u_2$ and then lastly add $y_h$ to get the general solution since $y=y_h+y_p$. \textbf{Remember to leave equation in standard form!!!}
+
+\begin{Ex}
+Spring problems. Consider the following equation
+$$
+m\cdot y''+d\cdot y'+k\cdot y= g(t)
+$$
+Where $m$ is the mass of the spring, $k$ is the spring constant, $d$ is the air resistance, and $g(t)$ is the external force. Simple harmonic motion is when there is no air resistance and no external force. Underdamp overdamp and critically damp refer to spring equations with air resistance and can be determined by examining the discriminant ($d^2-4km$). 
+
+Note that the natural frequency is $\sqrt{k/m}$. Resonance happens when external force has the same frequency as the natural frequency. For example see:
+
+$$
+3\cdot y''+5\cdot y=3\cdot Cos \sqrt{5/3}\cdot t 
+$$
+
+Since $\sqrt{k/m}$ is the same as the frequency of the external force then resonance occurs. 
+
+\textbf{Remember what the graphs look like}
+
+\end{Ex}
+
+\begin{Ex}
+Beauty theorem and superposition principle. Same as first test just generalized to vector space of diminsion $n$. Check continuity and the initial conditions then there exists a solution in the interval in which the functions are continuous. 
+\end{Ex}
+
+\begin{Ex}
+When a power series converges it allows us to differentiate it term by term. Use the ratio test to see what the radius of convergence is. Take the limit of $\dfrac{a_n}{a_{n+1}}$ as $n$ approaches infinity. 
+\end{Ex}
+
+\begin{Ex}
+Taylor series
+
+$$
+f(x)=\sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!} \cdot (x-x_0)^n
+$$
+
+For all $x$ inside the radius of convergence we say $f$ is analytic. 
+
+\textbf{Note that when dealing with initial conditions the center is the initial $x_0$ and if $y(x_0)=k_0$ and $y'(x_0)=k_1$ then we have $a_0=k_0$ and $a_1=k_1$}
+
+\end{Ex}
+
+\begin{Rem}
+For nonhomogenous power series you must compare coefficients and usually have different cases for $n=1$, where you compare coefficients and $n\ge 2$ where you generate a recurrence formula. 
+\end{Rem}
+
+\begin{Ex}
+A quick way to find the radius of convergence is to find the shortest distance between the center $x_0$ to the point where the function is singular. 
+
+For example consider the function
+$$
+\dfrac{Sin x}{x^2+1}
+$$
+
+Has singular points at $i,-i$. If the center is at $2$ then we can draw the graph and use pythagorean theorem to get the shortest distance between $-i,i$ and $2$ is $\sqrt{5}$
+
+\end{Ex}
+
+\begin{Ex}
+If $P(x_0)=0$ then the point is singular and we need to use the frobenius method and use the indicial equation to find the values for $r$. The indicial equation is the equation not part of the sum that is of the lowest power. 
+
+Instead of using the normal power series for $y$ we will use 
+
+$$
+y=(x-x_0)^r \cdot \sum_{n=0}^{\infty} a_n\cdot (x-x_0)^n
+$$
+
+You will use the indicial equation to find the two values of $r$ in the recurrence formula to get two separate recurrence formulas and thus two separate linearly independent solutions. $y_1=x^{r_1}\cdot$ a shit ton of $a_n$. $y_2=x^{r_2}\cdot$ a shit ton of $b_n$
+
+\end{Ex}
+
+\begin{Ex}
+The bessel equation is. 
+$$
+x^2y''+xy'+(x^2-p^2)y=0
+$$
+
+\textbf{Remember that if $p$ is an integer then the Bessel equation changes from $y=c_1\cdot J_p(x)+c_2\cdot J_{-p}(x)$ to $y=c_1\cdot J_p(x)+c_2\cdot Y_p(x)$ where $Y_p(x)$ is the Bessel function of the second kind of order $p$. This is because if $p$ is an integer then$J_p$ and $J_{-p}$ are linearly dependent and we need to modify the equation.} Sometimes diffeqs can be transformed into a bessel equation so that the solution can be found easier. 
+\end{Ex}
+
+\begin{Ex}
+Laplace formula is on table, the formula with the integration. Be sure to be familiar with the table, and the only proof necessary for this is the integration by parts proof to show what $y(t),y'(t),y''(t)$ are under the Laplace transform. 
+\end{Ex}
+
+\end{document}
+
+ 
+ 
